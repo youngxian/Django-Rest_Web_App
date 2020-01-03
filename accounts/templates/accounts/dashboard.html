@@ -1,0 +1,482 @@
+{% extends 'layout.html' %}{% load static %}
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/landingPage/index.css' %}" />
+<link
+rel="stylesheet"
+href="{% static 'lib/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css' %}"
+/>    
+<style>
+#search-bar { display: block; margin: .25em 0 0; width: 100%; padding: .25em .5em; font-size: 1.2em; }
+
+.output {
+  list-style: none;
+  width: 100%;
+  min-height: 0px;
+  border-top: 0 !important;
+  color: #767676;
+  font-size: .75em;
+  transition: min-height 0.2s;
+  position: absolute;
+  z-index: 5;
+}
+
+.output, #search-bar {
+  background: #fff;
+  border: 1px solid #767676;
+}
+
+.prediction-item {
+  padding: .5em .75em;
+  transition: color 0.2s, background 0.2s;
+}
+
+.output:hover .focus {
+  background: #fff;
+  color: #767676;
+}
+
+.prediction-item:hover, .focus,
+.output:hover .focus:hover {
+  background: #ddd;
+  color: #333;
+}
+
+.prediction-item:hover {
+  cursor: pointer;
+}
+
+.noclick       {
+  pointer-events: none;
+}
+.prediction-item strong { color: #333; }
+.prediction-item:hover strong { color: #000; }
+p { margin-top: 1em; }
+h1 { color: #439973; padding-bottom: 5px; border-bottom: 2px dotted #439973; font-family: 'Patua One'; }
+span { font-size: 1.5em; }
+</style>
+<script src="{% static 'js/landingPage.js' %}"></script>
+<script src="{% static 'lib/OwlCarousel2-2.3.4/dist/owl.carousel.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(() => {
+    carousels();
+  });
+</script>
+{% endblock %}
+{% block content %}
+<div class="content-wrapper">
+  <div class="container">
+    <div class="form-wrapper landing-page-parent-wrapper">
+      <h5 class="form-header-small">
+        Before you engage a person in online transaction
+      </h5>
+      <h2 class="form-header">Check the person’s profile here</h2>
+      <form class="landing-page" action="">
+        <div class="form-group">
+          <div class="input-field-wrapper">
+            <input
+              type="text"
+              placeholder="Search.."
+              name="search"
+              class="form-field form-control"
+              autocomplete="off"
+            />
+            <span class="email-icon"
+              ><img src="{% static 'images/search-icon.svg' %}" alt="search"
+            /></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Check</button>
+        </div>
+      </form>
+      <!-- logged in section -->
+      <div class="align-data logged-in-section logged-in-section-create">
+        <div class="logged-in-section-text">
+          <span>Create a new contract</span
+          ><button class="hideDiv" onclick="hideDiv()" >
+            <img src="{% static 'images/right-arrow.svg' %}" alt="arrow" />
+          </button>
+        </div>
+      </div>
+      <div class="align-data logged-in-section logged-in-section-hidden">
+        <div class="logged-in-section-text">
+          <span>Create a new contract</span
+          ><span class="logged-in-section-text-small"
+            >Who do you want to have a contract with?
+          </span>
+        </div>
+        <form
+          class="landing-page landing-page-card"
+          action="/contracts/create_contract"
+        >
+          <div class="form-group">
+            <div class="input-field-wrapper">
+              <input
+                type="text"
+                placeholder="Enter phone number or email"
+                name="search"
+                class="form-field form-control"
+                autocomplete="off"
+                id="search-bar"
+                style="color:black"
+              />   
+              <ul class="output selectpicker" style="display: none;" id="searchResult" >
+              </ul>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:6px">
+              <img src="{% static 'images/right-arrow.svg' %}" alt="arrow" />
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- logged in section ends-->
+      <!-- unlogged in section -->
+      <!-- <div class="align-data">
+        <img src="../../Assests/images/down-arrow_icon.svg" alt="icon" />
+      </div> -->
+      <!-- unlogged in section ends-->
+      <h2 class="form-header">How it works</h2>
+      <h5 class="form-header-small align-middle">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+      </h5>
+      <div class="landing-page-wrapper how-it-works">
+        <div class="image-wrapper">
+          <span class="image-count">01</span>
+          <span class="image-wrapper-image"
+            ><img src="{% static 'images/image1.svg' %}" alt="image"
+          /></span>
+          <span class="image-wrapper-text"
+            ><span>Get the phone number or email</span> of the person you
+            want to deal with</span
+          >
+        </div>
+        <div class="image-wrapper">
+          <span class="image-count">02</span>
+          <span class="image-wrapper-image"
+            ><img src="{% static 'images/image2.svg' %}" alt="image"
+          /></span>
+          <span class="image-wrapper-text"
+            ><span>Find the person here</span> and see whether he or she is
+            a good person</span
+          >
+        </div>
+        <div class="image-wrapper">
+          <span class="image-count">03</span>
+          <span class="image-wrapper-image"
+            ><img src="{% static 'images/image3.svg' %}" alt="image"
+          /></span>
+          <span class="image-wrapper-text"
+            >If you are satisfied with the findings
+            <span>begin dealing with the person</span></span
+          >
+        </div>
+      </div>
+      <div class="landing-page-wrapper the-goal-wrapper">
+        <h2 class="form-header the-goal-wrapper-header">
+          We want to <span>make it easier</span> to have online transaction
+          with <span>total strangers</span>
+        </h2>
+        <h2 class="form-header">The goal</h2>
+        <div class="the-goal-image-section">
+          <div class="image-wrapper">
+            <span class="image-wrapper-image"
+              ><img src="{% static 'images/image4.svg' %}" alt="image"
+            /></span>
+            <span class="image-wrapper-text"
+              ><span>Without</span> Justeece.com</span
+            >
+          </div>
+          <div class="image-wrapper">
+            <span class="image-wrapper-image"
+              ><img src="{% static 'images/image6.svg' %}" alt="image"
+            /></span>
+            <span class="image-wrapper-text image-wrapper-text-colored"
+              >Filter</span
+            >
+          </div>
+          <div class="image-wrapper">
+            <span class="image-wrapper-image"
+              ><img src="{% static 'images/image5.svg' %}" alt="image"
+            /></span>
+            <span class="image-wrapper-text"
+              ><span>With</span> Justeece.com</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container testimonials-section">
+    <div class="landing-page-wrapper testimonial-wrapper">
+      <h2 class="form-header">Testimonials</h2>
+      <h5 class="form-header-small">What our clients are saying</h5>
+      <div class="gtco-testimonials">
+        <div class="owl-carousel owl-carousel1 owl-theme">
+          <div>
+            <div class="card text-center">
+              <div class="card-body">
+                <div class="card-header-comma">
+                  <img src="{% static 'images/comma.svg' %}" alt="comma" />
+                </div>
+                <p class="card-text">
+                  “ Nam libero tempore, cum soluta nobis est eligendi optio
+                  cumque nihil impedit quo minus id quod maxime placeat ”
+                </p>
+              </div>
+              <div class="card-profile">
+                <img
+                  class="card-img-top"
+                  src="https://images.unsplash.com/photo-1549836938-d278c5d46d20?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=303&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=303"
+                  alt=""
+                />
+                <h5>
+                  Hanna Lisem<br />
+                  <span> Project Manager </span>
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card text-center">
+              <div class="card-body">
+                <div class="card-header-comma">
+                  <img src="{% static 'images/comma.svg' %}" alt="comma" />
+                </div>
+                <p class="card-text">
+                  “ Nam libero tempore, cum soluta nobis est eligendi optio
+                  cumque nihil impedit quo minus id quod maxime placeat ”
+                </p>
+              </div>
+              <div class="card-profile">
+                <img
+                  class="card-img-top"
+                  src="https://images.unsplash.com/photo-1549836938-d278c5d46d20?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=303&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=303"
+                  alt=""
+                />
+                <h5>
+                  Hanna Lisem<br />
+                  <span> Project Manager </span>
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card text-center">
+              <div class="card-body">
+                <div class="card-header-comma">
+                  <img src="{% static 'images/comma.svg' %}" alt="comma" />
+                </div>
+                <p class="card-text">
+                  “ Nam libero tempore, cum soluta nobis est eligendi optio
+                  cumque nihil impedit quo minus id quod maxime placeat ”
+                </p>
+              </div>
+              <div class="card-profile">
+                <img
+                  class="card-img-top"
+                  src="https://images.unsplash.com/photo-1549836938-d278c5d46d20?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=303&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=303"
+                  alt=""
+                />
+                <h5>
+                  Hanna Lisem<br />
+                  <span> Project Manager </span>
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card text-center">
+              <div class="card-body">
+                <div class="card-header-comma">
+                  <img src="{% static 'images/comma.svg' %}" alt="comma" />
+                </div>
+                <p class="card-text">
+                  “ Nam libero tempore, cum soluta nobis est eligendi optio
+                  cumque nihil impedit quo minus id quod maxime placeat ”
+                </p>
+              </div>
+              <div class="card-profile">
+                <img
+                  class="card-img-top"
+                  src="https://images.unsplash.com/photo-1549836938-d278c5d46d20?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=303&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=303"
+                  alt=""
+                />
+                <h5>
+                  Hanna Lisem<br />
+                  <span> Project Manager </span>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="write-testimonial">
+        <button class="btn btn-outline-primary">Write a testimonial</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+  
+    /*var $terms = [
+      'search',
+      'test',
+      'css',
+      'apple',
+      'bear',
+      'cat',
+      'crabapple',
+      'creep',
+      'czar',
+      'danger',
+      'dominant',
+      'doppler',
+      'everclear',
+      'evangelism',
+      'frodo'
+       ].sort(),
+       $return = [];
+      
+    function strInArray(str, strArray) {
+      for (var j=0; j<strArray.length; j++) {
+        if (strArray[j].match(str) && $return.length < 5) {
+          var $h = strArray[j].replace(str, '<strong>'+str+'</strong>');
+          $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span></li>');
+        }
+      }
+    }
+      
+    function nextItem(kp) {
+      if ( $('.focus').length > 0 ) {
+        var $next = $('.focus').next(),
+            $prev = $('.focus').prev();
+      }
+      
+      if ( kp == 38 ) { // Up
+      
+        if ( $('.focus').is(':first-child') ) {
+          $prev = $('.prediction-item:last-child');
+        }
+        
+        $('.prediction-item').removeClass('focus');
+        $prev.addClass('focus');
+        
+      } else if ( kp == 40 ) { // Down
+      
+        if ( $('.focus').is(':last-child') ) {
+          $next = $('.prediction-item:first-child');
+        }
+        
+        $('.prediction-item').removeClass('focus');
+        $next.addClass('focus');
+      }
+    }
+    
+    $(function(){  
+      $('#search-bar').keydown(function(e){
+        $key = e.keyCode;
+        if ( $key == 38 || $key == 40 ) {
+          nextItem($key);
+          return;
+        }
+        
+        setTimeout(function() {
+          var $search = $('#search-bar').val();
+          $return = [];
+          
+          strInArray($search, $terms);
+          
+          if ( $search == '' || ! $('input').val ) {
+            $('.output').html('').slideUp();
+          } else {
+            $('.output').html($return).slideDown();
+          }
+      
+          $('.prediction-item').on('click', function(){
+            $text = $(this).find('span').text();
+            $('.output').slideUp(function(){
+              $(this).html('');
+            });
+            $('#search-bar').val($text);
+          });
+          
+          $('.prediction-item:first-child').addClass('focus');
+          
+        }, 50);
+      });
+    });
+      
+      $('#search-bar').focus(function(){
+        if ( $('.prediction-item').length > 0 ) {
+          $('.output').slideDown();
+        }
+        
+        $('#searchform').submit(function(e){
+          e.preventDefault();
+          $text = $('.focus').find('span').text();
+          $('.output').slideUp();
+          $('#search-bar').val($text);
+          $('input').blur();
+        });
+      });
+      
+      $('#search-bar').blur(function(){
+        if ( $('.prediction-item').length > 0 ) {
+          $('.output').slideUp();
+        }
+      });*/
+
+      $('#search-bar').focus(function(){
+        console.log("focus")
+        if ( $('.prediction-item').length > 0 ) {
+          $('.output').slideDown();
+        }
+      })
+
+        $("#search-bar").keyup(function(){
+          console.log("keyup")
+      var search = $(this).val();
+      {% comment %} debugger {% endcomment %}
+      if(search != ""){
+
+          $.ajax({
+              url: '/accounts/user_list/'+search,
+              type: 'get',
+              data: {search:search},
+              dataType: 'json',
+              success:function(response){
+                  var len = response.length;
+                  $("#searchResult").empty();
+                  for( var i = 0; i<len; i++){
+                      var id = response[i]['id'];
+                      var email = response[i]['email'];
+                      
+                      $("#searchResult").append('<li class="prediction-item"><span class="prediction-text" value='+id+'>' + email + '</span></li>');
+                     // $("#searchResult").append("<li value='"+id+"'>"+email+"</li>");
+                  }
+                  if (len===0){
+                      $("#searchResult").append('<li class="prediction-item noclick"><span class="prediction-text" value="No result found">No result found</span></li>');
+
+                  }
+                  
+                  // binding click event to li
+                  $("#searchResult li").bind("click",function(){
+                    $('#search-bar').val(this.childNodes[0].innerHTML);
+                      $('.output').slideUp();
+                  });
+                  $('.output').slideDown();
+
+              }
+          });
+      }
+
+  });
+
+
+   
+});
+</script>
+{% endblock %}

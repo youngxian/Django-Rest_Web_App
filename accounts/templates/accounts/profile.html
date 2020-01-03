@@ -1,0 +1,382 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'lib/fontawesome/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/topbar/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/common/form/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/register/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/profilePage/index.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/bootstrap-select-1.13.14/dist/css/bootstrap-select.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css' %}"
+    />
+    <script src="{% static 'lib/jquery/index.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'lib/fontawesome/js/all.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-select-1.13.14/dist/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+  </head>
+  <body>
+    <div class="navbar-wrapper">
+      <!-- navbar for logged in page start -->
+      <nav class="navbar navbar-expand-md fixed-top navbar-logged-in">
+        <div class="container">
+          <div class="search-container hidden-search-bar">
+            <form action="/search" method="get">
+              <input
+                class="search"
+                id="searchleft"
+                type="search"
+                name="q"
+                placeholder="Search"
+              />
+              <label class="button searchbutton" for="searchleft"
+                ><img src="{% static 'images/search-icon.svg' %}" alt="search"
+              /></label>
+            </form>
+          </div>
+
+          <div class="navbar-logo-wrapper">
+            <a class="navbar-brand" href="#"
+              ><div class="logo">
+                <img src="{% static 'images/logo.svg' %}" />
+              </div>
+              <div class="logo-text">
+                <span class="upper-text">JUSTEECE</span
+                ><span class="lower-text">Find <span>Trust</span></span>
+              </div></a
+            >
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapsibleNavbar"
+            onclick="openNav()"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form class="form-inline">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search for providers"
+              aria-label="Search"
+            />
+            <button class="btn my-2 my-sm-0" type="submit">
+              <img src="{% static 'images/search-icon.svg' %}" alt="search" />
+            </button>
+          </form>
+          <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+              ><img src="{% static 'images/closeBtn.svg' %}" alt=""
+            /></a>
+            <div class="overlay-content">
+              <a href="#">Home</a>
+              <a href="#">About us</a>
+              <a href="#">Careers</a>
+              <a href="#">Create contract</a>
+              <a href="#">Log out</a>
+            </div>
+          </div>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Careers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
+              </li>
+              <li class="nav-item custom-spacing">
+                <button class="btn btn-primary">New contract</button>
+              </li>
+            </ul>
+            <div class="navbar-text">
+              <button class="btn btn-secondry">
+                <span>Log out</span>
+                <img
+                  class="card-img-top"
+                  src="https://images.unsplash.com/photo-1549836938-d278c5d46d20?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=303&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=303"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- navbar for logged in page end -->
+      <!-- navbar for unlogged in page start -->
+      <!-- <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+          <div class="navbar-logo-wrapper">
+            <a class="navbar-brand" href="#"
+              ><div class="logo">
+                <img src="../../Assests/images/logo.svg" />
+              </div>
+              <div class="logo-text">
+                <span class="upper-text">JUSTEECE</span
+                ><span class="lower-text">Find <span>Trust</span></span>
+              </div></a
+            >
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapsibleNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
+              </li>
+            </ul>
+            <div class="navbar-text">
+              <button class="btn btn-secondry">Log in</button>
+              <button class="btn btn-primary">Sign in</button>
+            </div>
+          </div>
+        </div>
+      </nav> -->
+      <!-- navbar for unlogged in page end -->
+    </div>
+    <div class="content-wrapper">
+      <div class="container">
+        <div class="form-wrapper profile-page-parent-wrapper">
+          <div class="profile-page">
+            <div class="profile-description">
+              <div class="profile-image-wrapper">
+                <img
+                  class="profile-image"
+                  src="https://images.unsplash.com/photo-1549836938-d278c5d46d20?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=303&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=303"
+                  alt=""
+                />
+              </div>
+              <div class="profile-image-description">
+                <div class="profile-name">Andrew</div>
+                <div class="profile-location">Minsk, Belarus</div>
+                <div class="profile-completion">
+                  <span class="success">100%</span><span>Success</span>
+                </div>
+                <div class="profile-completion-section">
+                  <div class="profile-completion-section-progess">
+                    <span
+                      ><img
+                        src="{% static 'images/inProgress.svg' %}"
+                        alt="progress" /></span
+                    ><span class="inner-text">In progess ( 5 )</span>
+                  </div>
+                  <div class="profile-completion-section-complete">
+                    <span
+                      ><img
+                        src="{% static 'images/completed.svg' %}"
+                        alt="complete" /></span
+                    ><span class="inner-text">Completed ( 3 )</span>
+                  </div>
+                </div>
+                <div class="profile-dispute-section">
+                  <div
+                    class="profile-dispute-section-progess align-profile-section"
+                  >
+                    <span
+                      ><img
+                        src="{% static 'images/dispute.svg' %}"
+                        alt="dispute" /></span
+                    ><span class="inner-text">Dispute ( 2 )</span>
+                  </div>
+                  <div
+                    class="profile-dispute-section-complete align-profile-section"
+                  >
+                    <span
+                      ><img
+                        src="{% static 'images/cancelled.svg' %}"
+                        alt="cancelled" /></span
+                    ><span class="inner-text">Cancelled ( 1 )</span>
+                  </div>
+                  <div
+                    class="profile-dispute-section-pending align-profile-section"
+                  >
+                    <span
+                      ><img
+                        src="{% static 'images/pending.svg' %}"
+                        alt="pending" /></span
+                    ><span class="inner-text">Pending ( 3 )</span>
+                  </div>
+                </div>
+                <div class="profile-creation-button">
+                  <button class="btn btn-primary">Create contract</button>
+                </div>
+              </div>
+            </div>
+            <div class="profile-detail-description">
+              <div class="profile-detail-myself profile-detail-wrapper">
+                <div class="profile-detail-left-section">About Myself</div>
+                <div class="profile-detail-right-section">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+              </div>
+              <div class="profile-detail-name profile-detail-wrapper">
+                <div class="profile-detail-left-section">Full Name</div>
+                <div class="profile-detail-right-section">Andrew Kutsan</div>
+              </div>
+              <div class="profile-detail-email profile-detail-wrapper">
+                <div class="profile-detail-left-section">Email</div>
+                <div class="profile-detail-right-section">
+                  a.kutsan1994@gmail.com
+                </div>
+              </div>
+              <div class="profile-detail-phone-number profile-detail-wrapper">
+                <div class="profile-detail-left-section">Phone number</div>
+                <div class="profile-detail-right-section">
+                  +375 29 322 33 35
+                </div>
+              </div>
+              <div class="profile-detail-language profile-detail-wrapper">
+                <div class="profile-detail-left-section">Languages</div>
+                <div class="profile-detail-right-section">
+                  English, Belarusian, Spanish
+                </div>
+              </div>
+              <div class="profile-detail-total-contacts profile-detail-wrapper">
+                <div class="profile-detail-left-section">Total Contracts</div>
+                <div class="profile-detail-right-section">22</div>
+              </div>
+            </div>
+            <div class="profile-details-history">
+              <h5 class="form-header-small">Deals History</h5>
+              <div class="details-history-wrapper">
+                <div class="details-history-wrapper-section">
+                  <div class="details-history-wrapper-section-header">
+                    The name of the contract
+                  </div>
+                  <div class="details-history-wrapper-section-content">
+                    <div class="details-history-wrapper-section-content-header">
+                      <div class="stars-wrapper">
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                      </div>
+                      <div class="date-wrapper">Mar 5, 2021 - Mar 6, 2021</div>
+                    </div>
+                    <div class="details-history-wrapper-section-content-main">
+                      “Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.”
+                    </div>
+                    <div class="details-history-wrapper-section-content-amount">
+                      $200,000
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="details-history-wrapper">
+                <div class="details-history-wrapper-section">
+                  <div class="details-history-wrapper-section-header">
+                    Another name of the contract
+                  </div>
+                  <div class="details-history-wrapper-section-content">
+                    <div class="details-history-wrapper-section-content-header">
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star active-color"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                      </div>
+                      <div class="date-wrapper">Mar 5, 2021 - Mar 6, 2021</div>
+                    </div>
+                    <div class="details-history-wrapper-section-content-main">
+                      “Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.”
+                    </div>
+                    <div class="details-history-wrapper-section-content-amount">
+                      $200,000
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="details-history-wrapper">
+                <div class="details-history-wrapper-section">
+                  <div class="details-history-wrapper-section-header">
+                    Another name of the contract
+                  </div>
+                  <div class="details-history-wrapper-section-content">
+                    <div class="details-history-wrapper-section-content-header">
+                      <div class="stars-wrapper">
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                      </div>
+                      <div class="date-wrapper">Mar 5, 2021 - Mar 6, 2021</div>
+                    </div>
+                    <div class="details-history-wrapper-section-content-main">
+                      “Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.”
+                    </div>
+                    <div class="details-history-wrapper-section-content-amount">
+                      $200,000
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="buttons-wrapper">
+                <button
+                  type="submit"
+                  class="btn btn-outline-primary profile-btn"
+                >
+                  Back to the main page
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-footer">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          ><div class="logo"><img src="{% static 'images/logo.svg' %}" /></div>
+          <div class="logo-text">
+            <span class="upper-text">JUSTEECE</span
+            ><span class="lower-text">Find <span>Trust</span></span>
+          </div></a
+        >
+        <div class="footer-nav-tabs">
+          <a>Home</a><a>About us</a><a>Login</a>
+        </div>
+        <div class="footer-social-tabs">
+          <a><i class="fab fa-facebook-f"></i></a
+          ><a><i class="fab fa-twitter"></i></a
+          ><a><i class="fab fa-linkedin-in"></i></a
+          ><a><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="copyright-bar">©2021 Justeece Inc. All rights reserved</div>
+    </div>
+  </body>
+</html>
